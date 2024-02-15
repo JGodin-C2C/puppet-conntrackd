@@ -23,6 +23,7 @@ conntrackd::config_filename: 'conntrackd.conf'
 # Configuration file parameters
 conntrackd::hashsize: 32768
 conntrackd::logfile: 'off'
+conntrackd::systemd: ~
 conntrackd::syslog: 'on'
 conntrackd::lockfile: '/var/lock/conntrack.lock'
 conntrackd::sock_path: '/var/run/conntrackd.ctl'

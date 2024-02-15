@@ -49,6 +49,9 @@ Sync {
 
 General {
 
+  <% if $conntrackd::config::systemd != undef { -%>
+	Systemd <% if $conntrackd::config::systemd  { %> yes <% } else {  %> no <% } %>
+  <% } -%>
 	Scheduler {
 		Type <%= $conntrackd::config::scheduler_type %>
 		Priority <%= $conntrackd::config::scheduler_priority %>

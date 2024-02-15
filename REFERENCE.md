@@ -86,6 +86,7 @@ The following parameters are available in the `conntrackd` class:
 * [`cache_timeout`](#-conntrackd--cache_timeout)
 * [`commit_timeout`](#-conntrackd--commit_timeout)
 * [`purge_timeout`](#-conntrackd--purge_timeout)
+* [`systemd`](#-conntrackd--systemd)
 * [`protocol`](#-conntrackd--protocol)
 * [`interface`](#-conntrackd--interface)
 * [`ipv4_address`](#-conntrackd--ipv4_address)
@@ -404,6 +405,15 @@ integer: If the firewall replica goes from primary to backup,
          This command schedules a flush of the table in N seconds.
 Default: <tt>60</tt>
 
+##### <a name="-conntrackd--systemd"></a>`systemd`
+
+Data type: `Optional[Boolean]`
+
+Boolean to Enable/Disable systemd support. Possible values:
+* <tt>True</tt>: Enable systemd support
+* <tt>False</tt>: Disable systemd support
+Defaults to <tt>undef</tt>.
+
 ##### <a name="-conntrackd--protocol"></a>`protocol`
 
 Data type: `Enum['Multicast', 'UDP']`
@@ -602,6 +612,7 @@ The following parameters are available in the `conntrackd::config` class:
 * [`cache_timeout`](#-conntrackd--config--cache_timeout)
 * [`commit_timeout`](#-conntrackd--config--commit_timeout)
 * [`purge_timeout`](#-conntrackd--config--purge_timeout)
+* [`systemd`](#-conntrackd--config--systemd)
 * [`protocol`](#-conntrackd--config--protocol)
 * [`interface`](#-conntrackd--config--interface)
 * [`ipv4_address`](#-conntrackd--config--ipv4_address)
@@ -877,6 +888,17 @@ integer: If the firewall replica goes from primary to backup,
 Default: <tt>60</tt>
 
 Default value: `$conntrackd::purge_timeout`
+
+##### <a name="-conntrackd--config--systemd"></a>`systemd`
+
+Data type: `Optional[Boolean]`
+
+Boolean to Enable/Disable systemd support. Possible values:
+* <tt>True</tt>: Enable systemd support
+* <tt>False</tt>: Disable systemd support
+Defaults to <tt>undef</tt>.
+
+Default value: `$conntrackd::systemd`
 
 ##### <a name="-conntrackd--config--protocol"></a>`protocol`
 

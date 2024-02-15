@@ -132,6 +132,12 @@
 #            This command schedules a flush of the table in N seconds.
 #   Default: <tt>60</tt>
 #
+# @param systemd
+#   Boolean to Enable/Disable systemd support. Possible values:
+#   * <tt>True</tt>: Enable systemd support
+#   * <tt>False</tt>: Disable systemd support
+#   Defaults to <tt>undef</tt>.
+#
 # @param protocol
 #   string:  The protocol to use for syncing.
 #   values:  <tt>Multicast</tt> or <tt>UDP</tt>
@@ -257,6 +263,7 @@ class conntrackd::config (
   Integer                          $cache_timeout              = $conntrackd::cache_timeout,
   Integer                          $commit_timeout             = $conntrackd::commit_timeout,
   Integer                          $purge_timeout              = $conntrackd::purge_timeout,
+  Optional[Boolean]                $systemd                    = $conntrackd::systemd,
   String                           $interface                  = $conntrackd::interface,
   String                           $ipv4_address               = $conntrackd::ipv4_address,
   String                           $ipv4_interface             = $conntrackd::ipv4_interface,
