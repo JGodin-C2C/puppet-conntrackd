@@ -49,11 +49,11 @@ conntrackd::eventiterationlimit: 100
 conntrackd::sync_mode: 'FTFW'
 conntrackd::resend_queue_size: 131072
 conntrackd::ack_window_size: 300
-conntrackd::disable_external_cache: 'Off'
+conntrackd::disable_external_cache: false
 conntrackd::disable_internal_cache: 'Off'
 conntrackd::refresh_time: 15
 conntrackd::cache_timeout: 180
-conntrackd::commit_timeout: 180
+conntrackd::commit_timeout: ~
 conntrackd::purge_timeout: 60
 
 conntrackd::protocol: 'Multicast'

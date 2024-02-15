@@ -356,12 +356,13 @@ Default: <tt>300</tt>
 
 ##### <a name="-conntrackd--disable_external_cache"></a>`disable_external_cache`
 
-Data type: `String`
+Data type: `Boolean`
 
 boolean: This clause allows you to disable the external cache. Thus,
          the state entries are directly injected into the kernel
          conntrack table.
-Default: <tt>Off</tt>
+values:  one of: <tt>True</tt>, <tt>False</tt>
+Default: <tt>False</tt>
 
 ##### <a name="-conntrackd--disable_internal_cache"></a>`disable_internal_cache`
 
@@ -389,12 +390,12 @@ Default: <tt>180</tt>
 
 ##### <a name="-conntrackd--commit_timeout"></a>`commit_timeout`
 
-Data type: `Integer`
+Data type: `Optional[Integer]`
 
 integer: This parameter allows you to set an initial fixed timeout
          for the committed entries when this node goes from backup
          to primary.
-Default: <tt>180</tt>
+Default: <tt>undef</tt>
 
 ##### <a name="-conntrackd--purge_timeout"></a>`purge_timeout`
 
@@ -828,12 +829,13 @@ Default value: `$conntrackd::ack_window_size`
 
 ##### <a name="-conntrackd--config--disable_external_cache"></a>`disable_external_cache`
 
-Data type: `String`
+Data type: `Boolean`
 
 boolean: This clause allows you to disable the external cache. Thus,
          the state entries are directly injected into the kernel
          conntrack table.
-Default: <tt>Off</tt>
+values:  one of: <tt>True</tt>, <tt>False</tt>
+Default: <tt>false</tt>
 
 Default value: `$conntrackd::disable_external_cache`
 
@@ -869,12 +871,12 @@ Default value: `$conntrackd::cache_timeout`
 
 ##### <a name="-conntrackd--config--commit_timeout"></a>`commit_timeout`
 
-Data type: `Integer`
+Data type: `Optional[Integer]`
 
 integer: This parameter allows you to set an initial fixed timeout
          for the committed entries when this node goes from backup
          to primary.
-Default: <tt>180</tt>
+Default: <tt>undef</tt>
 
 Default value: `$conntrackd::commit_timeout`
 

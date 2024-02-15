@@ -3,15 +3,17 @@ Sync {
 <% if $conntrackd::config::sync_mode == 'FTFW' { -%>
 		ResendQueueSize <%= $conntrackd::config::resend_queue_size %>
 		ACKWindowSize <%= $conntrackd::config::ack_window_size %>
-		DisableExternalCache <%= $conntrackd::config::disable_external_cache %>
+		DisableExternalCache <% if $conntrackd::config::disable_external_cache { %> on <% } else { %> off <% } %>
 <% } elsif $conntrackd::config::sync_mode == 'NOTRACK' { -%>
 		DisableInternalCache <%= $conntrackd::config::disable_internal_cache %>
-		DisableExternalCache <%= $conntrackd::config::disable_external_cache %>
+		DisableExternalCache <% if $conntrackd::config::disable_external_cache { %> on <% } else { %> off <% } %>
 <% } elsif $conntrackd::config::sync_mode == 'ALARM' { -%>
         RefreshTime <%= $conntrackd::config::refresh_time %>
         CacheTimeout <%= $conntrackd::config::cache_timeout %>
 <% } -%>
+<% if $conntrackd::config::commit_timeout { -%>
 		CommitTimeout <%= $conntrackd::config::commit_timeout %>
+<% } -%>
 		PurgeTimeout <%= $conntrackd::config::purge_timeout %>
 	}
 

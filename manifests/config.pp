@@ -103,7 +103,8 @@
 #   boolean: This clause allows you to disable the external cache. Thus,
 #            the state entries are directly injected into the kernel
 #            conntrack table.
-#   Default: <tt>Off</tt>
+#   values:  one of: <tt>True</tt>, <tt>False</tt>
+#   Default: <tt>false</tt>
 #
 # @param disable_internal_cache
 #   boolean: This clause allows you to disable the internal cache.
@@ -124,7 +125,7 @@
 #   integer: This parameter allows you to set an initial fixed timeout
 #            for the committed entries when this node goes from backup
 #            to primary.
-#   Default: <tt>180</tt>
+#   Default: <tt>undef</tt>
 #
 # @param purge_timeout
 #   integer: If the firewall replica goes from primary to backup,
@@ -257,11 +258,11 @@ class conntrackd::config (
   Enum['FTFW', 'NOTRACK', 'ALARM'] $sync_mode                  = $conntrackd::sync_mode,
   Integer                          $resend_queue_size          = $conntrackd::resend_queue_size,
   Integer                          $ack_window_size            = $conntrackd::ack_window_size,
-  String                           $disable_external_cache     = $conntrackd::disable_external_cache,
+  Boolean                          $disable_external_cache     = $conntrackd::disable_external_cache,
   String                           $disable_internal_cache     = $conntrackd::disable_internal_cache,
   Integer                          $refresh_time               = $conntrackd::refresh_time,
   Integer                          $cache_timeout              = $conntrackd::cache_timeout,
-  Integer                          $commit_timeout             = $conntrackd::commit_timeout,
+  Optional[Integer]                $commit_timeout             = $conntrackd::commit_timeout,
   Integer                          $purge_timeout              = $conntrackd::purge_timeout,
   Optional[Boolean]                $systemd                    = $conntrackd::systemd,
   String                           $interface                  = $conntrackd::interface,
@@ -310,6 +311,9 @@ class conntrackd::config (
     if $udp_ipv6_address and $udp_ipv6_dest == undef {
       fail("\"${module_name}\": protocol \"${protocol}\" udp_ipv6_dest must be specified if ipv6_address is specified")
     }
+  }
+  if $disable_external_cache == 'On' and $commit_timeout {
+    fail("\"${module_name}\": commit_timeout must not be set if disable_external_cache is set on")
   }
 
   # manage config dir
